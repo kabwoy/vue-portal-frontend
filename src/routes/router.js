@@ -5,6 +5,7 @@ import StudentList from "../components/students/StudentList.vue";
 import Student from "../components/students/Student.vue";
 import UpdateStudent from "../components/students/UpdateStudent.vue";
 import ExamEntry from "../components/Exams/ExamEntry.vue";
+import ExamList from "../components/Exams/ExamList.vue";
 
 const  router = createRouter({
     history:createWebHistory(),
@@ -13,7 +14,8 @@ const  router = createRouter({
         {path:"/" , component:StudentList},
         {path:"/students/:id" , component:Student},
         {path:"/students/:id/edit" , component:UpdateStudent},
-        {path:"/exams/new" , component:ExamEntry}
+        {path:"/exams/new" , component:ExamEntry},
+        {path:"/exams" , component:ExamList}
         // {path:"/login" , component:Login}
         ]
 })

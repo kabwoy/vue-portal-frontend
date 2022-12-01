@@ -11,8 +11,9 @@
 <script>
     import AddDetails from "./components/students/AddDetails.vue";
     import StudentList from "./components/students/StudentList.vue";
+    import ExamList from "./components/Exams/ExamList.vue";
     export default {
-        components: {StudentList, AddDetails},
+        components: {ExamList, StudentList, AddDetails},
 
 
     }
@@ -20,10 +21,11 @@
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,200&display=swap');
 
    *{
        margin: 0;
-       font-family: Arial;
+       font-family: 'Montserrat', sans-serif;
        box-sizing: border-box;
    }
    body{

@@ -9,7 +9,7 @@
             <p class="text-center" style="color: white">Add Student Details</p>
             <div class="row">
             <div class="student-section col col-md-6 col-sm-12">
-            <p class="text-center">Student Details</p>
+            <p class="text-center" style="color: white">Student Details</p>
             <div class="form-group">
                 <label for="first_name"><span>*</span>First Name</label>
                 <input type="text" v-model="first_name" id="first_name" class="form-control" required>
@@ -32,7 +32,7 @@
                 </div>
             </div>
                 <div class="col col-md-6 col-sm-12">
-                    <p>Parents & Relative Details</p>
+                    <p style="color: white">Parents & Relative Details</p>
                     <div class="form-group">
                         <label for="parent_first_name"><span>*</span>Parent FIrst Name</label>
                         <input type="text" id="parent_first_name" v-model="parent_first_name"  class="form-control" required>

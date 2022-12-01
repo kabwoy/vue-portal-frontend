@@ -5,6 +5,7 @@
            <router-link to="/students/add">Add Student</router-link>
            <router-link to="/">Students</router-link>
            <router-link to="/exams/new">Add Exams</router-link>
+           <router-link to="/exams">Exams</router-link>
        </nav>
    </header>
 </template>
