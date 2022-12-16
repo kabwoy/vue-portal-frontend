@@ -14,7 +14,10 @@
     import ExamList from "./components/Exams/ExamList.vue";
     export default {
         components: {ExamList, StudentList, AddDetails},
-
+        mounted() {
+            this.$store.dispatch('getStudents')
+            this.$store.dispatch('getExamDetails')
+        }
 
     }
 
@@ -31,7 +34,7 @@
    body{
        background: #355c7d; /* fallback for old browsers */
        background: -webkit-linear-gradient(to right, #355c7d, #6c5b7b, #c06c84); /* Chrome 10-25, Safari 5.1-6 */
-       background: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84);
+       /*background-image: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84),url('https://media.istockphoto.com/id/1264689237/photo/school-or-office-supplies-border-on-blackboard-background-copy-space.jpg?b=1&s=612x612&w=0&k=20&c=1zgwEJNRXZi0vz1dJJ0S9d0GO8V6Z1NvnXeJlXTGmOQ=');*/
    }
 
    .v-enter-from{

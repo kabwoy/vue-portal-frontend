@@ -1,7 +1,8 @@
 <template>
-
+    {{searchBy}}
     <div class="container table-responsive">
         <p class="text-center fs-5 fw-bold " >Students List</p>
+        <input type="text" v-model="searchTerm">
    <table class="table table-hover  table-bordered">
        <thead class="bg-dark">
        <tr>
@@ -31,9 +32,16 @@
 </template>
 
 <script>
-
     export default {
+
         name: "StudentList",
+        data(){
+
+            return{
+                searchTerm:''
+            }
+        },
+
         methods:{
             getStudent(id) {
                 this.$router.push({path:`students/${id}`})
@@ -48,7 +56,11 @@
 
         },
         computed:{
-
+            searchBy(){
+                const students = this.$store.getters.getStudents
+                const res = students.filter(student=>student.first_name.includes(this.searchTerm))
+                console.log(res)
+            }
         },
         async mounted(){
             this.$store.dispatch('getStudents')

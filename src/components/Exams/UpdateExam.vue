@@ -1,26 +1,23 @@
 <template>
-    <div class="container col-lg-12 col-md-6 mt-3">
+    <div class="container mt-4">
+
         <div class="form-group" style="float: right;">
             <label class="m-1" for="class" style="font-weight:bold;">Filter by class</label>
             <select v-model="selectedClass" class="mt-2" id="class" @change="filterbyclass">
-                <option v-for="c in classes" :value="c">{{c}}</option>
+                <option disabled selected value="filter by class">filter by class</option>
+                <option  v-for="c in classes" :value="c">{{c}}</option>
             </select>
         </div>
-
-        <h2 class="text-center fs-3 p-0" style="color: white; margin: 0; font-weight: bold; ">
-            Exam Marks Entry
-        </h2>
-        <form @submit.prevent="submitExam">
+        <form @submit.prevent="updateExam">
             <div class="form-group">
                 <label for="exam">Type of Exam</label>
                 <select v-model="type_of_exam" id="exam" class="form-select">
-                    <option value="Type of Exam"  selected disabled>Type of Exam</option>
+<!--                    <option value="Type of Exam"  selected disabled>Type of Exam</option>-->
                     <option value="Opening Term Exam">Opening Term Exam</option>
                     <option value="Mid Term Exam">Mid Term Exam</option>
                     <option value="End Of Term">End Term Exam</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="eng">English</label>
                 <input v-model="English" id="eng" type="text" class="form-control">
@@ -48,11 +45,11 @@
             <div class="form-group">
                 <label for="students">students</label>
                 <select v-model="student"  id="students" class="form-select">
-                    <option v-for="student in students" :value="student.id">{{student.first_name}}| {{student.id}}</option>
+                    <option  v-for="student in students" :value="student.id">{{student.first_name}}| {{student.id}}</option>
                 </select>
             </div>
             <div class="mt-2">
-                <button class="btn btn-outline-dark">Submit</button>
+                <button class="btn btn-outline-dark">Update Exam</button>
             </div>
 
         </form>
@@ -61,24 +58,22 @@
 
 <script>
     export default {
-        name: "ExamEntry",
+        name: "UpdateExam",
         data(){
-            return{
-
-                students:[],
-                selectedClass:"",
-                classes:[1,2,3,4,5,6,7,8],
-                type_of_exam:"Type of Exam",
-                English:"",
-                Kiswahili:"",
-                MathMatics:"",
-                Science:"",
-                Social_Studies:"",
-                CRE:"",
-                student:"1"
-
-
-            }
+          return{
+              type_of_exam:"",
+              Exam:{},
+              classes:[1,2,3,4,5,6,7,8],
+              English:"",
+              Kiswahili:"",
+              MathMatics:"",
+              Science:"",
+              Social_Studies:"",
+              students:[],
+              CRE:"",
+              selectedClass:"filter by class",
+              student:""
+          }
         },
         methods:{
             async filterbyclass(){
@@ -93,7 +88,7 @@
                 // this.students = students
                 // this.students = students
             },
-            async submitExam(){
+            async updateExam(){
                 const examData = {
                     type_of_exam: this.type_of_exam,
                     English: this.English,
@@ -103,25 +98,28 @@
                     Social_Studies: this.Social_Studies,
                     Science:this.Science,
                     studentId:this.student
-
                 }
-                const response = await fetch("http://localhost:3000/exams" , {headers:{"Content-Type":"application/json"} , method:"POST",
-                    body:JSON.stringify(examData)
-                })
-                const data = await response.json()
-                console.log(data)
-                    this.type_of_exam="",
-                    this.English="",
-                    this.Kiswahili="",
-                    this.MathMatics="",
-                    this.Science="",
-                    this.Social_Studies="",
-                    this.CRE="",
-                    this.student=""
-            }
-
+                const response = await fetch(`http://localhost:3000/exams/${this.$route.params.id}` , {headers:{
+                    'Content-Type':'application/json'
+                    }, method:'PATCH' , body:JSON.stringify(examData)})
+                this.$router.push({path:"/exams"})
+            },
         },
         async mounted(){
+            const response = await fetch(`http://localhost:3000/exams/${this.$route.params.id}/edit`)
+            const data = await response.json()
+            this.Exam = data
+            this.type_of_exam = this.Exam.type_of_exam
+                this.English = this.Exam.English
+            this.Kiswahili = this.Exam.Kiswahili
+            this.MathMatics = this.Exam.Math
+            this.Science = this.Exam.Science
+            this.Social_Studies = this.Exam.Social_Studies
+            this.CRE = this.Exam.CRE
+            this.student = this.Exam.studentId
+
+        },
+        async created(){
             // this.$store.dispatch('getStudents')
             const response = await fetch("http://localhost:3000/students")
             const data = await response.json()
@@ -134,11 +132,6 @@
 </script>
 
 <style scoped>
-form{
-    width: 50%;
-    margin: auto;
-    padding: 20px;
-}
     .container{
         box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
         border-radius: 10px;
@@ -148,7 +141,11 @@ form{
         background-position: center;
         background-size: cover;
     }
-
+    form{
+        width: 50%;
+        margin: auto;
+        padding: 20px;
+    }
     label{
         font-weight: 500;
     }
