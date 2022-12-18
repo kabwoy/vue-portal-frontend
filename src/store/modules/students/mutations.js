@@ -3,7 +3,6 @@ export default {
         state.students = payload
     },
     getStudentbyid(state , payload) {
-
       state.student.find((todo)=>todo.id === payload.id)
 
     },

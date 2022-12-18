@@ -1,13 +1,33 @@
 <template>
-   <header>
-       <h2>Portal</h2>
-       <nav>
-           <router-link to="/students/add">Add Student</router-link>
-           <router-link to="/">Students</router-link>
-           <router-link to="/exams/new">Add Exams</router-link>
-           <router-link to="/exams">Exams</router-link>
-       </nav>
-   </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav  mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/">Students</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/exams">Exams</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/exams">DashBoard</router-link>
+                    </li>
+                </ul>
+                <ul class="navbar-nav links  mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/login">Login</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/signup">Sign up</router-link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </template>
 
 <script>
@@ -17,32 +37,8 @@
 </script>
 
 <style scoped>
-
-    header{
-        padding: 15px;
-        background-color: #680768;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-
-    }
-    nav a{
-        text-decoration: none;
-        color: white;
-        cursor:pointer;
-        font-weight: bold;
-        margin: 8px;
-
-    }
-
-    nav a:hover{
-        color: #6cdb6c;
-    }
-
-    h2{
-        color: white;
-        font-weight: bolder;
-    }
+.links{
+    margin-left: auto;
+}
 
 </style>

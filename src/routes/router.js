@@ -8,6 +8,7 @@ import ExamEntry from "../components/Exams/ExamEntry.vue";
 import ExamList from "../components/Exams/ExamList.vue";
 import ExamDetail from "../components/Exams/ExamDetail.vue";
 import UpdateExam from "../components/Exams/UpdateExam.vue";
+import SignUp from "../components/Auth/SignUp.vue";
 
 const  router = createRouter({
     history:createWebHistory(),
@@ -19,8 +20,9 @@ const  router = createRouter({
         {path:"/exams/new" , component:ExamEntry},
         {path:"/exams" , component:ExamList},
         {path:"/exams/:examid/students/:studentid" , component:ExamDetail},
-        {path:"/exams/:id/edit" , component:UpdateExam}
-        // {path:"/login" , component:Login}
+        {path:"/exams/:id/edit" , component:UpdateExam},
+        {path:"/login" , component:Login},
+        {path:"/signup" , component:SignUp}
         ]
 })
 

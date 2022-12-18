@@ -18,7 +18,6 @@ export default {
         const response = await fetch(`http://localhost:3000/students/${payload.id}` , {method:"DELETE"})
         const data = await response.json()
         context.commit('deleteStudent' , {id:payload.id})
-        alert(data)
     }
 }
 
